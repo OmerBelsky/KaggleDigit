@@ -11,7 +11,7 @@ def loadData():
     with open("train.csv", 'r') as reader:
         next(reader)
         for line in reader:
-            lineList = list(map(lambda x: int(x), line.split(',')))
+            lineList = [int(x) for x in line.split(',')]
             for i in range(len(lineList)):
                 if i not in values.keys():
                     values[i] = lineList[i]
@@ -21,7 +21,7 @@ def loadData():
     with open("test.csv", 'r') as reader:
         next(reader)
         for line in reader:
-            lineList = list(map(lambda x: int(x), line.split(',')))
+            lineList = [int(x) for x in line.split(',')]
             for i in range(len(lineList)):
                 if i not in values.keys():
                     values[i] = lineList[i]
@@ -34,7 +34,7 @@ def loadData():
     with open("train.csv", 'r') as reader:
         next(reader)
         for line in reader:
-            lineList = list(map(lambda x: int(x), line.split(',')))
+            lineList = [int(x) for x in line.split(',')]
             target, pixels = lineList[0], lineList[1:]
             pixels = [pixels[i]/255.0 for i in usable]
             trainSet.append(pixels)
@@ -44,7 +44,7 @@ def loadData():
         for line in reader:
             pixels = line.strip().split(',')
             pixels = [pixels[i] for i in usable]
-            testSet.append(list(map(lambda x: int(x)/255.0, pixels)))
+            testSet.append([int(x)/255.0 for x in pixels])
     return trainSet, trainTargets, testSet
 
 def predictWithDNN():
